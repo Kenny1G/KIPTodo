@@ -22,7 +22,7 @@ public class TodoList {
     }
 
     public static void toggleDone(Task task){
-        task.isDone = !task.isDone;
+        task.setDone(!task.getDone());
     }
 
     public static void displayTodos(){

@@ -3,14 +3,15 @@ package model;
 import java.time.LocalDate;
 
 public class Task {
-    String label;
-    boolean isDone;
-    LocalDate date;
+    private String label;
+    private boolean isDone;
+    private LocalDate date;
 
     public Task(String label){
         this.label = label;
         this.isDone = false;
     }
+    // Have two constructors in case user does not want to set a date when they add task
     public Task(String label, LocalDate date){
         this(label);
         this.date = date;
