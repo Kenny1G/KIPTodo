@@ -2,41 +2,48 @@ package model;
 
 import java.time.LocalDate;
 
-public class Task {
+public class Task
+{
     private String label;
     private boolean isDone;
     private LocalDate date;
 
-    public Task(String label){
+    public Task(String label)
+    {
         this.label = label;
         this.isDone = false;
     }
     // Have two constructors in case user does not want to set a date when they add task
-    public Task(String label, LocalDate date){
+    public Task(String label, LocalDate date)
+    {
         this(label);
         this.date = date;
     }
     // Getters
-    public String getLabel(){
+    public String getLabel()
+    {
         return this.label;
     }
-    public boolean getDone(){
+    public boolean getDone()
+    {
         return this.isDone;
     }
-    public LocalDate getDate() {
+    public LocalDate getDate()
+    {
         return date;
     }
     // Setters
-    public void setLabel(String label){
+    public void setLabel(String label)
+    {
         this.label = label;
     }
-    public void setDone(boolean isDone){
+    public void setDone(boolean isDone)
+    {
         this.isDone = isDone;
     }
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDate date)
+    {
         this.date = date;
     }
-
-
 
 }
