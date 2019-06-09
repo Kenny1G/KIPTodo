@@ -1,16 +1,18 @@
-package ui;
-
 import model.TodoList;
+import ui.UserInterface;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Main
 {
+
+    private static TodoList todo;
     public static void main(String[] args)
     {
-        // threading to get it all running properly
+
         UserInterface ui = new UserInterface();
+        // threading to get it all running properly
         SwingUtilities.invokeLater(ui);
 
     }

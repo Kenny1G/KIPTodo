@@ -2,6 +2,7 @@ package model;
 
 import model.Task;
 
+import javax.swing.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,39 +10,43 @@ import java.util.List;
 public class TodoList
 {
 
-    public static List<Task> todos;
+    public List<Task> notDone = new ArrayList<Task>();
+    public List<Task> Done = new ArrayList<Task>();
+    public DefaultListModel listModel;
+    public JList finalList;
 
     public TodoList()
     {
-         todos = new ArrayList<Task>();
+        listModel = new DefaultListModel();
+        finalList = new JList(listModel);
     }
 
-    public static void addTask(String label)
+    public  void addTask(String label)
     {
         Task task = new Task(label);
-        todos.add(task);
+        notDone.add(task);
+        listModel.addElement(task.getLabel());
     }
-    public static void addTask(String label, LocalDate date)
+    public void removeTask(int index)
     {
-        Task task = new Task(label, date);
-        todos.add(task);
-    }
-    public static void removeTask(Task task)
-    {
-        todos.remove(task);
+        notDone.remove(index);
+        listModel.remove(index);
     }
 
-    public static void toggleDone(Task task)
+    public void toggleDone(Task task)
     {
         task.setDone(!task.getDone());
+        notDone.remove(task);
+        Done.add(task);
+
     }
 
-    public static void displayTodos()
-    {
-        for(Task task : todos)
-        {
-            System.out.println(task.getLabel());
-            System.out.println(task.getDone());
-        }
-    }
+//    public void displayTodos()
+//    {
+//        for(Task task : notDone)
+//        {
+//            System.out.println(task.getLabel());
+//            System.out.println(task.getDone());
+//        }
+//    }
 }
