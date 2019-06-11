@@ -19,6 +19,7 @@ public class TodoList
     {
         listModel = new DefaultListModel();
         finalList = new JList(listModel);
+        finalList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     public  void addTask(String label)

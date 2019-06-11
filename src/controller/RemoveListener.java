@@ -8,17 +8,15 @@ import java.awt.event.ActionListener;
 
 public class RemoveListener implements ActionListener {
     private TodoList todo;
-    private JList list;
 
-    public RemoveListener(TodoList todo, JList list)
+    public RemoveListener(TodoList todo)
     {
         this.todo = todo;
-        this.list = list;
     }
 
     @Override
-    public void actionPerformed(ActionEvent actionEvent) {
-        int index = this.list.getSelectedIndex();
-        this.todo.removeTask(index);
+    public void actionPerformed(ActionEvent actionEvent)
+    {
+        this.todo.removeTask(this.todo.finalList.getSelectedIndex());
     }
 }

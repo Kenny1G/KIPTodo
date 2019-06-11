@@ -1,6 +1,7 @@
 package ui;
 
 import controller.AddListener;
+import controller.RemoveListener;
 import model.TodoList;
 
 import javax.swing.*;
@@ -47,10 +48,14 @@ public class UserInterface implements Runnable
         JTextField field = new JTextField(40);
         JScrollPane dummyTask = new JScrollPane(todo.finalList);
         JButton addButton = new JButton("add");
+        JButton removeButton = new JButton("remove");
 
         //event listeners
         AddListener addListener = new AddListener(todo,field);
         addButton.addActionListener(addListener);
+
+        RemoveListener removeListener = new RemoveListener(todo);
+        removeButton.addActionListener(removeListener);
 
         //It's not you it's me I just need some space
         layout.setAutoCreateGaps(true);
@@ -62,7 +67,8 @@ public class UserInterface implements Runnable
                 layout.createParallelGroup(GroupLayout.Alignment.CENTER)
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(field)
-                                .addComponent(addButton))
+                                .addComponent(addButton)
+                                .addComponent(removeButton))
                         .addComponent(dummyTask)
         );
 
@@ -71,7 +77,8 @@ public class UserInterface implements Runnable
                 layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(field,30, 30, 30)
-                                .addComponent(addButton))
+                                .addComponent(addButton)
+                                .addComponent(removeButton))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dummyTask)
         );

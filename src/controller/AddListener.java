@@ -20,8 +20,12 @@ public class AddListener implements ActionListener
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
-        this.todo.addTask(this.taskField.getText().trim());
-        this.taskField.setText("");
+        if (taskField.getText().length() > 0)
+        {
+            this.todo.addTask(this.taskField.getText().trim());
+            this.taskField.setText("");
+        }
+
 
     }
 }
