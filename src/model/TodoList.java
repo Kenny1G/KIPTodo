@@ -1,24 +1,25 @@
 package model;
 
-import model.Task;
-
 import javax.swing.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TodoList
 {
 
+    //TodoList is a arraylist of task objects and a default list model used to
+    // show the list in our user interface
     public List<Task> notDone = new ArrayList<Task>();
-    public List<Task> Done = new ArrayList<Task>();
-    public DefaultListModel listModel;
+    public List<Task> done = new ArrayList<Task>();
+    public DefaultListModel notDoneModel;
+    public DefaultListModel doneModel;
     public JList finalList;
 
     public TodoList()
     {
-        listModel = new DefaultListModel();
-        finalList = new JList(listModel);
+        notDoneModel = new DefaultListModel();
+        doneModel = new DefaultListModel();
+        finalList = new JList(notDoneModel);
         finalList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
@@ -26,28 +27,40 @@ public class TodoList
     {
         Task task = new Task(label);
         notDone.add(task);
-        listModel.addElement(task.getLabel());
+        notDoneModel.addElement(task.getLabel());
     }
     public void removeTask(int index)
     {
-        notDone.remove(index);
-        listModel.remove(index);
+        if (index >=0 && index < notDone.size())
+        {
+            notDone.remove(index);
+            notDoneModel.remove(index);
+        }
+
     }
 
     public void toggleDone(Task task)
     {
         task.setDone(!task.getDone());
-        notDone.remove(task);
-        Done.add(task);
+        if (task.getDone())
+        {
+            // when task is done add it to done list
+            done.add(task);
+            doneModel.addElement(task.getLabel());
+            // and remove it from notDone list
+            notDone.remove(task);
+            notDoneModel.remove(finalList.getSelectedIndex());
+
+        }
+        else {
+            // reverse for when task is undone
+            notDone.add(task);
+            notDoneModel.addElement(task.getLabel());
+            done.remove(task);
+            doneModel.remove(finalList.getSelectedIndex());
+
+        }
+
 
     }
-
-//    public void displayTodos()
-//    {
-//        for(Task task : notDone)
-//        {
-//            System.out.println(task.getLabel());
-//            System.out.println(task.getDone());
-//        }
-//    }
 }

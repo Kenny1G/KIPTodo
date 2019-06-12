@@ -1,6 +1,7 @@
 package ui;
 
 import controller.AddListener;
+import controller.DoneListener;
 import controller.RemoveListener;
 import model.TodoList;
 
@@ -25,8 +26,6 @@ public class UserInterface implements Runnable
 
         //MODIFIES: frame
         //EFFECT: adds all components to container
-        todo.addTask("kill kenny");
-        todo.addTask("marry sansa");
         Components(frame.getContentPane());
 
         //setting window size, placing window in center of screen when it starts and making our close button work
@@ -49,6 +48,7 @@ public class UserInterface implements Runnable
         JScrollPane dummyTask = new JScrollPane(todo.finalList);
         JButton addButton = new JButton("add");
         JButton removeButton = new JButton("remove");
+        JButton doneButton = new JButton("done");
 
         //event listeners
         AddListener addListener = new AddListener(todo,field);
@@ -56,6 +56,9 @@ public class UserInterface implements Runnable
 
         RemoveListener removeListener = new RemoveListener(todo);
         removeButton.addActionListener(removeListener);
+
+        DoneListener doneListener = new DoneListener(todo);
+        doneButton.addActionListener(doneListener);
 
         //It's not you it's me I just need some space
         layout.setAutoCreateGaps(true);
@@ -68,7 +71,8 @@ public class UserInterface implements Runnable
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(field)
                                 .addComponent(addButton)
-                                .addComponent(removeButton))
+                                .addComponent(removeButton)
+                                .addComponent(doneButton))
                         .addComponent(dummyTask)
         );
 
@@ -78,7 +82,8 @@ public class UserInterface implements Runnable
                         .addGroup(layout.createParallelGroup()
                                 .addComponent(field,30, 30, 30)
                                 .addComponent(addButton)
-                                .addComponent(removeButton))
+                                .addComponent(removeButton)
+                                .addComponent(doneButton))
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dummyTask)
         );

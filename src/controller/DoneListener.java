@@ -2,22 +2,19 @@ package controller;
 
 import model.TodoList;
 
-import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RemoveListener implements ActionListener
+public class DoneListener implements ActionListener
 {
-    private TodoList todo;
-
-    public RemoveListener(TodoList todo)
+    TodoList todo;
+    public DoneListener(TodoList todo)
     {
         this.todo = todo;
     }
-
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
-        this.todo.removeTask(this.todo.finalList.getSelectedIndex());
+        this.todo.toggleDone(todo.notDone.get(this.todo.finalList.getSelectedIndex()));
     }
 }
