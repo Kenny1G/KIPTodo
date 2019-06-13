@@ -13,22 +13,20 @@ public class UserInterface implements Runnable
     private JFrame frame;
     private TodoList todo = new TodoList();
 
+
     public UserInterface()
     {
-
     }
 
+    // setups the window
     @Override
     public void run()
     {
-        // Basic group layout set up shenanigans
+
         frame = new JFrame("KIP");
 
-        //MODIFIES: frame
-        //EFFECT: adds all components to container
         Components(frame.getContentPane());
 
-        //setting window size, placing window in center of screen when it starts and making our close button work
         frame.setSize(500,400);
         frame.setLocationRelativeTo(null);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -37,6 +35,7 @@ public class UserInterface implements Runnable
         frame.setVisible(true);
     }
 
+    // Creates all our buttons and fields
     private void Components(Container container)
     {
         //setting our layout
@@ -45,10 +44,10 @@ public class UserInterface implements Runnable
 
         //Making our components
         JTextField field = new JTextField(40);
-        JScrollPane dummyTask = new JScrollPane(todo.finalList);
         JButton addButton = new JButton("add");
         JButton removeButton = new JButton("remove");
         JButton doneButton = new JButton("done");
+        TodoPane todoPane = new TodoPane(todo);
 
         //event listeners
         AddListener addListener = new AddListener(todo,field);
@@ -60,20 +59,20 @@ public class UserInterface implements Runnable
         DoneListener doneListener = new DoneListener(todo);
         doneButton.addActionListener(doneListener);
 
-        //It's not you it's me I just need some space
+
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
 
         //When creating a group layout one has to define the horizontal and vertical arrangement
         //setting horizontal layout
         layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.CENTER)
+                layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
                                 .addComponent(field)
                                 .addComponent(addButton)
                                 .addComponent(removeButton)
                                 .addComponent(doneButton))
-                        .addComponent(dummyTask)
+                        .addComponent(todoPane)
         );
 
         //setting vertical layout
@@ -84,8 +83,7 @@ public class UserInterface implements Runnable
                                 .addComponent(addButton)
                                 .addComponent(removeButton)
                                 .addComponent(doneButton))
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(dummyTask)
+                        .addComponent(todoPane)
         );
     }
 }

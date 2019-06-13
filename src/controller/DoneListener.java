@@ -15,6 +15,6 @@ public class DoneListener implements ActionListener
     @Override
     public void actionPerformed(ActionEvent actionEvent)
     {
-        this.todo.toggleDone(todo.notDone.get(this.todo.finalList.getSelectedIndex()));
+        this.todo.toggleDone(todo.notDone.get(this.todo.notDoneList.getSelectedIndex()));
     }
 }

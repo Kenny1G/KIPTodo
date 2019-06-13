@@ -12,7 +12,6 @@ public class Main
     {
 
         UserInterface ui = new UserInterface();
-        // threading to get it all running properly
         SwingUtilities.invokeLater(ui);
 
     }

@@ -7,20 +7,22 @@ import java.util.List;
 public class TodoList
 {
 
-    //TodoList is a arraylist of task objects and a default list model used to
-    // show the list in our user interface
+    /** TodoList is made up of 2 parts, done and not done.
+     * Each part comprises of an array list, a Default list model and a JList.
+     * The Array list holds the task objects while the Model and thus JList hold the task label for ui
+     * purposes */
     public List<Task> notDone = new ArrayList<Task>();
     public List<Task> done = new ArrayList<Task>();
-    public DefaultListModel notDoneModel;
-    public DefaultListModel doneModel;
-    public JList finalList;
+    public DefaultListModel notDoneModel = new DefaultListModel();;
+    public DefaultListModel doneModel = new DefaultListModel();
+    public JList notDoneList;
+    public JList doneList;
 
     public TodoList()
     {
-        notDoneModel = new DefaultListModel();
-        doneModel = new DefaultListModel();
-        finalList = new JList(notDoneModel);
-        finalList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        notDoneList = new JList(notDoneModel);
+        doneList = new JList(doneModel);
+        notDoneList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     public  void addTask(String label)
@@ -36,7 +38,6 @@ public class TodoList
             notDone.remove(index);
             notDoneModel.remove(index);
         }
-
     }
 
     public void toggleDone(Task task)
@@ -49,18 +50,15 @@ public class TodoList
             doneModel.addElement(task.getLabel());
             // and remove it from notDone list
             notDone.remove(task);
-            notDoneModel.remove(finalList.getSelectedIndex());
+            notDoneModel.remove(notDoneList.getSelectedIndex());
 
         }
         else {
-            // reverse for when task is undone
             notDone.add(task);
             notDoneModel.addElement(task.getLabel());
             done.remove(task);
-            doneModel.remove(finalList.getSelectedIndex());
+            doneModel.remove(notDoneList.getSelectedIndex());
 
         }
-
-
     }
 }
