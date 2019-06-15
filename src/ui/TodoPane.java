@@ -7,13 +7,14 @@ import java.awt.*;
 
 public class TodoPane extends JPanel {
     private TodoList todo;
+    public JTabbedPane tabbedPane;
 
     public TodoPane(TodoList todo)
     {
         super (new GridLayout(1,1));
         this.todo = todo;
 
-        JTabbedPane tabbedPane = new JTabbedPane();
+        tabbedPane = new JTabbedPane();
         JScrollPane notDonePane = new JScrollPane(todo.notDoneList);
         JScrollPane donePane = new JScrollPane(todo.doneList);
 

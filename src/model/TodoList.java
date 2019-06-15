@@ -1,3 +1,8 @@
+/** TodoList is made up of 2 parts, done and not done.
+ * Each part comprises of an array list, a Default list model and a JList.
+ * The Array list holds the task objects while the Model and thus JList hold the task label for ui
+ * purposes */
+
 package model;
 
 import javax.swing.*;
@@ -6,11 +11,6 @@ import java.util.List;
 
 public class TodoList
 {
-
-    /** TodoList is made up of 2 parts, done and not done.
-     * Each part comprises of an array list, a Default list model and a JList.
-     * The Array list holds the task objects while the Model and thus JList hold the task label for ui
-     * purposes */
     public List<Task> notDone = new ArrayList<Task>();
     public List<Task> done = new ArrayList<Task>();
     public DefaultListModel notDoneModel = new DefaultListModel();;
@@ -31,12 +31,12 @@ public class TodoList
         notDone.add(task);
         notDoneModel.addElement(task.getLabel());
     }
-    public void removeTask(int index)
+    public void removeTask(int index, DefaultListModel model, List array)
     {
-        if (index >=0 && index < notDone.size())
+        if (index >=0 && index < array.size())
         {
-            notDone.remove(index);
-            notDoneModel.remove(index);
+            array.remove(index);
+            model.remove(index);
         }
     }
 
@@ -45,20 +45,16 @@ public class TodoList
         task.setDone(!task.getDone());
         if (task.getDone())
         {
-            // when task is done add it to done list
             done.add(task);
             doneModel.addElement(task.getLabel());
-            // and remove it from notDone list
             notDone.remove(task);
             notDoneModel.remove(notDoneList.getSelectedIndex());
-
-        }
-        else {
+        } else {
             notDone.add(task);
             notDoneModel.addElement(task.getLabel());
             done.remove(task);
-            doneModel.remove(notDoneList.getSelectedIndex());
-
+            doneModel.remove(doneList.getSelectedIndex());
         }
+
     }
 }

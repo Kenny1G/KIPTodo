@@ -42,21 +42,21 @@ public class UserInterface implements Runnable
         GroupLayout layout = new GroupLayout(container);
         container.setLayout(layout);
 
-        //Making our components
+
         JTextField field = new JTextField(40);
         JButton addButton = new JButton("add");
         JButton removeButton = new JButton("remove");
-        JButton doneButton = new JButton("done");
+        JButton doneButton = new JButton("toggle");
         TodoPane todoPane = new TodoPane(todo);
 
         //event listeners
         AddListener addListener = new AddListener(todo,field);
         addButton.addActionListener(addListener);
 
-        RemoveListener removeListener = new RemoveListener(todo);
+        RemoveListener removeListener = new RemoveListener(todo, todoPane);
         removeButton.addActionListener(removeListener);
 
-        DoneListener doneListener = new DoneListener(todo);
+        DoneListener doneListener = new DoneListener(todo, todoPane);
         doneButton.addActionListener(doneListener);
 
 
