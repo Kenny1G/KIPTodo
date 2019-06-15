@@ -5,7 +5,8 @@ import model.TodoList;
 import javax.swing.*;
 import java.awt.*;
 
-public class TodoPane extends JPanel {
+public class TodoPane extends JPanel
+{
     private TodoList todo;
     public JTabbedPane tabbedPane;
 

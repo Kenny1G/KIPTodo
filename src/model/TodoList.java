@@ -1,7 +1,8 @@
-/** TodoList is made up of 2 parts, done and not done.
- * Each part comprises of an array list, a Default list model and a JList.
- * The Array list holds the task objects while the Model and thus JList hold the task label for ui
- * purposes */
+/*
+ * TodoList is made up of 2 parts, done and not done.
+ * Each part comprises of an array list, a default list model and a JList.
+ * The Array list holds the task objects while the Model and thus JList hold the task label for ui purposes.
+ */
 
 package model;
 
@@ -11,17 +12,17 @@ import java.util.List;
 
 public class TodoList
 {
-    public List<Task> notDone = new ArrayList<Task>();
-    public List<Task> done = new ArrayList<Task>();
-    public DefaultListModel notDoneModel = new DefaultListModel();;
-    public DefaultListModel doneModel = new DefaultListModel();
-    public JList notDoneList;
-    public JList doneList;
+    public final List<Task> notDone = new ArrayList<Task>();
+    public final List<Task> done = new ArrayList<Task>();
+    public final DefaultListModel<String> notDoneModel = new DefaultListModel<String>();;
+    public final DefaultListModel<String> doneModel = new DefaultListModel<String>();
+    public final JList<String> notDoneList;
+    public final JList<String> doneList;
 
     public TodoList()
     {
-        notDoneList = new JList(notDoneModel);
-        doneList = new JList(doneModel);
+        notDoneList = new JList<String>(notDoneModel);
+        doneList = new JList<String>(doneModel);
         notDoneList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
@@ -31,7 +32,7 @@ public class TodoList
         notDone.add(task);
         notDoneModel.addElement(task.getLabel());
     }
-    public void removeTask(int index, DefaultListModel model, List array)
+    public void removeTask(int index, DefaultListModel<String> model, List<Task> array)
     {
         if (index >=0 && index < array.size())
         {

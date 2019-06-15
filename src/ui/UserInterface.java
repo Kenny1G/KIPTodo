@@ -35,10 +35,9 @@ public class UserInterface implements Runnable
         frame.setVisible(true);
     }
 
-    // Creates all our buttons and fields
     private void Components(Container container)
     {
-        //setting our layout
+
         GroupLayout layout = new GroupLayout(container);
         container.setLayout(layout);
 
@@ -64,7 +63,7 @@ public class UserInterface implements Runnable
         layout.setAutoCreateContainerGaps(true);
 
         //When creating a group layout one has to define the horizontal and vertical arrangement
-        //setting horizontal layout
+
         layout.setHorizontalGroup(
                 layout.createParallelGroup()
                         .addGroup(layout.createSequentialGroup()
@@ -75,7 +74,6 @@ public class UserInterface implements Runnable
                         .addComponent(todoPane)
         );
 
-        //setting vertical layout
         layout.setVerticalGroup(
                 layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup()
